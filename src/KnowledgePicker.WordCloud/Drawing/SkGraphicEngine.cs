@@ -13,7 +13,8 @@ namespace KnowledgePicker.WordCloud.Drawing
         private readonly SKPaint textPaint;
         private readonly WordCloudInput wordCloud;
 
-        public SkGraphicEngine(ISizer sizer, WordCloudInput wordCloud, SKTypeface? font)
+        public SkGraphicEngine(ISizer sizer, WordCloudInput wordCloud,
+            SKTypeface? font = null)
         {
             Sizer = sizer;
             Bitmap = new SKBitmap(wordCloud.Width, wordCloud.Height);
