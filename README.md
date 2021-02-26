@@ -2,15 +2,11 @@
 
 [![Nuget](https://img.shields.io/nuget/v/KnowledgePicker.WordCloud)](https://www.nuget.org/packages/KnowledgePicker.WordCloud/)
 
-`KnowledgePicker.WordCloud` is a modern (.NET Standard 2.0) and fast library for
-arranging and drawing [word
-clouds](https://knowledgepicker.com/t/427/tag-word-cloud) (a.k.a. tag clouds or
-wordle).
+`KnowledgePicker.WordCloud` is a modern (.NET Standard 2.0) and fast library for arranging and drawing [word clouds](https://knowledgepicker.com/t/427/tag-word-cloud) (a.k.a. tag clouds or wordle).
 
 ## How to use
 
-1. Install [NuGet package
-   `KnowledgePicker.WordCloud`](https://www.nuget.org/packages/KnowledgePicker.WordCloud/).
+1. Install [NuGet package `KnowledgePicker.WordCloud`](https://www.nuget.org/packages/KnowledgePicker.WordCloud/).
 2. Get collection of `WordCloudEntry`s. For example if you have dictionary of word frequencies:
 
    ```cs
@@ -31,11 +27,7 @@ wordle).
    };
    ```
 
-4. We need to create drawing engine, font sizer and layout. Currently we use
-   [SkiaSharp](https://github.com/mono/SkiaSharp) for fast cross-platform font
-   measuring (and drawing). We also only support logarithmic font sizes and
-   spiral layout. All these things are implemented in a generic way and can be
-   easily extended (contributions are welcome).
+4. We need to create drawing engine, font sizer and layout. Currently we use [SkiaSharp](https://github.com/mono/SkiaSharp) for fast cross-platform font measuring (and drawing). We also only support logarithmic font sizes and spiral layout. All these things are implemented in a generic way and can be easily extended (contributions are welcome).
 
    ```cs
    var sizer = new LogSizer(wordCloud);
@@ -50,8 +42,7 @@ wordle).
    IEnumerable<(LayoutItem Item, double FontSize)> items = wcg.Arrange();
    ```
 
-   And if we are in a Razor view of an ASP.NET Core application, for example, we
-   can generate SVG from `items`:
+   And if we are in a Razor view of an ASP.NET Core application, for example, we can generate SVG from `items`:
 
    ```cshtml
    <svg viewBox="0,0,@topicCloud.Width,@topicCloud.Height">
@@ -67,8 +58,7 @@ wordle).
    </svg>
    ```
 
-6. Alternatively, we can *draw* the topic cloud (see also [example
-   `WordFrequencies.ConsoleApp`](examples/WordFrequency.ConsoleApp)):
+6. Alternatively, we can *draw* the topic cloud (see also [example `WordFrequencies.ConsoleApp`](examples/WordFrequency.ConsoleApp)):
 
    ```cs
    using var bitmap = new SKBitmap(wordCloud.Width, wordCloud.Height);
@@ -86,25 +76,16 @@ wordle).
 
 ## Algorithm
 
-The world cloud algorithm was initially ported from
-[SourceCodeCloud](https://archive.codeplex.com/?p=sourcecodecloud). It uses
-[Quadtrees](https://en.wikipedia.org/wiki/Quadtree), hence it should be
-reasonably fast. It is inspired by [implementation of
-Wordle](https://stackoverflow.com/a/1478314) (once famous algorithm used on
-now-defunct site
-[wordle.net](https://web.archive.org/web/20201206102909/http://www.wordle.net/)).
+The world cloud algorithm was initially ported from [SourceCodeCloud](https://archive.codeplex.com/?p=sourcecodecloud). It uses [Quadtrees](https://en.wikipedia.org/wiki/Quadtree), hence it should be reasonably fast. It is inspired by [implementation of Wordle](https://stackoverflow.com/a/1478314) (once famous algorithm used on
+now-defunct site [wordle.net](https://web.archive.org/web/20201206102909/http://www.wordle.net/)).
 
 ## Contributing
 
-As mentioned [above](#how-to-use), only subset of functionality is implemented
-now, but all contributions are welcome. Feel free to open
-[issues](https://github.com/knowledgepicker/word-cloud/issues) and [pull
-requests](https://github.com/knowledgepicker/word-cloud/pulls).
+As mentioned [above](#how-to-use), only subset of functionality is implemented now, but all contributions are welcome. Feel free to open [issues](https://github.com/knowledgepicker/word-cloud/issues) and [pull requests](https://github.com/knowledgepicker/word-cloud/pulls).
 
 ### Creating NuGet package
 
-Until we have a CI pipeline, this is how we release new version of the package
-(don't forget to replace 1.0.0 by the correct version):
+Until we have a CI pipeline, this is how we release new version of the package (don't forget to replace 1.0.0 by the correct version):
 
 ```bash
 cd src/KnowledgePicker.WordCloud
