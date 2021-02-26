@@ -1,2 +1,6 @@
 # Visual Studio
 /.vs/
+
+# .NET
+bin/
+obj/

@@ -8,9 +8,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{AEDF67
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{14CFB4CF-8C4B-4FA4-9E33-5011A231DC77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgePicker.WordCloud", "src\KnowledgePicker.WordCloud\KnowledgePicker.WordCloud.csproj", "{B91D707E-2B8B-4E3B-9F51-4EC66606642F}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B91D707E-2B8B-4E3B-9F51-4EC66606642F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B91D707E-2B8B-4E3B-9F51-4EC66606642F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B91D707E-2B8B-4E3B-9F51-4EC66606642F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B91D707E-2B8B-4E3B-9F51-4EC66606642F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B91D707E-2B8B-4E3B-9F51-4EC66606642F} = {14CFB4CF-8C4B-4FA4-9E33-5011A231DC77}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0B4A40B7-692F-4BF0-AA09-6FC3A58241C5}
