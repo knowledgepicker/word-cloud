@@ -9,6 +9,18 @@
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <Company>KnowledgePicker</Company>
+    <Title>Word Cloud for .NET</Title>
+    <Description>Modern and fast library for arranging and drawing word clouds (a.k.a. tag clouds or wordle).</Description>
+    <Authors>KnowledgePicker</Authors>
+    <Copyright>Copyright 2021 Jan Joneš</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/knowledgepicker/word-cloud</PackageProjectUrl>
+    <PackageTags>WordCloud;TagCloud;Wordle</PackageTags>
+    <PackageReleaseNotes>https://github.com/knowledgepicker/word-cloud/releases</PackageReleaseNotes>
+    <RepositoryUrl>https://github.com/knowledgepicker/word-cloud</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryBranch>master</RepositoryBranch>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
