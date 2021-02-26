@@ -1,6 +1,8 @@
 # WordCloud for .NET
 
-KnowledgePicker.WordCloud is a modern (.NET Standard 2.0) and fast library for
+[![Nuget](https://img.shields.io/nuget/v/KnowledgePicker.WordCloud)](https://www.nuget.org/packages/KnowledgePicker.WordCloud/)
+
+`KnowledgePicker.WordCloud` is a modern (.NET Standard 2.0) and fast library for
 arranging and drawing [word
 clouds](https://knowledgepicker.com/t/427/tag-word-cloud) (a.k.a. tag clouds or
 wordle).
@@ -8,7 +10,7 @@ wordle).
 ## How to use
 
 1. Install [NuGet package
-   KnowledgePicker.WordCloud](https://www.nuget.org/packages/KnowledgePicker.WordCloud/).
+   `KnowledgePicker.WordCloud`](https://www.nuget.org/packages/KnowledgePicker.WordCloud/).
 2. Get collection of `WordCloudEntry`s. For example if you have dictionary of word frequencies:
 
    ```cs
@@ -65,8 +67,8 @@ wordle).
    </svg>
    ```
 
-6. Alternatively, we can *draw* the topic cloud (see also example
-   [WordFrequencies.ConsoleApp](examples/WordFrequency.ConsoleApp)):
+6. Alternatively, we can *draw* the topic cloud (see also [example
+   `WordFrequencies.ConsoleApp`](examples/WordFrequency.ConsoleApp)):
 
    ```cs
    using var bitmap = new SKBitmap(wordCloud.Width, wordCloud.Height);
@@ -82,9 +84,26 @@ wordle).
    data.SaveTo(writer);
    ```
 
-## Packaging
+## Algorithm
 
-Until we create a CI pipeline, this is how we release new version of the package
+The world cloud algorithm was initially ported from
+[SourceCodeCloud](https://archive.codeplex.com/?p=sourcecodecloud). It uses
+[Quadtrees](https://en.wikipedia.org/wiki/Quadtree), hence it should be
+reasonably fast. It is inspired by [implementation of
+Wordle](https://stackoverflow.com/a/1478314) (once famous algorithm used on
+now-defunct site
+[wordle.net](https://web.archive.org/web/20201206102909/http://www.wordle.net/)).
+
+## Contributing
+
+As mentioned [above](#how-to-use), only subset of functionality is implemented
+now, but all contributions are welcome. Feel free to open
+[issues](https://github.com/knowledgepicker/word-cloud/issues) and [pull
+requests](https://github.com/knowledgepicker/word-cloud/pulls).
+
+### Creating NuGet package
+
+Until we have a CI pipeline, this is how we release new version of the package
 (don't forget to replace 1.0.0 by the correct version):
 
 ```bash
