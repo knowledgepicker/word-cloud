@@ -56,13 +56,12 @@ namespace WordFrequency.ConsoleApp
                 using var engine = new SkGraphicEngine(sizer, wordCloud);
                 var layout = new SpiralLayout(wordCloud);
                 var wcg = new WordCloudGenerator<SKBitmap>(wordCloud, engine, layout);
-                using var bitmap = wcg.Draw();
 
                 // Draw the bitmap on white background.
                 using var final = new SKBitmap(wordCloud.Width, wordCloud.Height);
                 using var canvas = new SKCanvas(final);
                 canvas.Clear(SKColors.White);
-                canvas.DrawBitmap(bitmap, 0, 0);
+                canvas.DrawBitmap(wcg.Draw(), 0, 0);
 
                 // Save to PNG.
                 using var data = final.Encode(SKEncodedImageFormat.Png, 100);

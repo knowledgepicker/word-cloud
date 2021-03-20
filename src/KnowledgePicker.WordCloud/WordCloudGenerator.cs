@@ -1,5 +1,4 @@
 using KnowledgePicker.WordCloud.Drawing;
-using KnowledgePicker.WordCloud.Internal;
 using KnowledgePicker.WordCloud.Layouts;
 using KnowledgePicker.WordCloud.Primitives;
 using System;
@@ -33,7 +32,8 @@ namespace KnowledgePicker.WordCloud
             this.layout = layout;
         }
 
-        private TBitmap Process(Action<IGraphicEngine, IEnumerable<LayoutItem>> handler)
+        private T Process<T>(
+            Func<IGraphicEngine<TBitmap>, IEnumerable<LayoutItem>, T> handler)
         {
             // Arrange word cloud.
             var size = new SizeD(wordCloud.Width, wordCloud.Height);
@@ -41,25 +41,22 @@ namespace KnowledgePicker.WordCloud
 
             // Process results.
             var area = new RectangleD(new PointD(0, 0), size);
-            handler(engine, layout.GetWordsInArea(area));
-
-            return engine.Bitmap;
+            return handler(engine, layout.GetWordsInArea(area));
         }
 
         public IEnumerable<(LayoutItem Item, double FontSize)> Arrange()
         {
-            var result = Enumerable.Empty<(LayoutItem, double)>();
-            using var _ = Process((engine, items) =>
+            return Process((engine, items) =>
             {
                 // Just transform result.
-                result = items.Select(item =>
+                return items.Select(item =>
                    (item, engine.Sizer.GetFontSize(item.Entry.Count)));
-            }).AsDisposable();
-            return result;
+            });
         }
 
         /// <summary>
-        /// Draws the word cloud.
+        /// Draws the word cloud into <see
+        /// cref="IGraphicEngine{TBitmap}.Bitmap"/>.
         /// </summary>
         public TBitmap Draw()
         {
@@ -68,6 +65,7 @@ namespace KnowledgePicker.WordCloud
                 // Draw words.
                 foreach (var item in items)
                     engine.Draw(item.Location, item.Measured, item.Entry.Word, item.Entry.Count);
+                return engine.Bitmap;
             });
         }
     }
