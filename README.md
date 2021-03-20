@@ -3,7 +3,7 @@
 [![Nuget](https://img.shields.io/nuget/v/KnowledgePicker.WordCloud?logo=nuget)](https://www.nuget.org/packages/KnowledgePicker.WordCloud/)
 [![GitHub](https://img.shields.io/github/last-commit/knowledgepicker/word-cloud/master?logo=github)](https://github.com/knowledgepicker/word-cloud)
 
-`KnowledgePicker.WordCloud` is a modern (.NET Standard 2.0) and fast library for arranging and drawing [word clouds](https://knowledgepicker.com/t/427/tag-word-cloud) (a.k.a. tag clouds or wordle).
+`KnowledgePicker.WordCloud` is a modern (.NET Standard 2.0) and fast library for arranging and drawing [word clouds](https://knowledgepicker.com/t/427/tag-word-cloud) (a.k.a. tag clouds or wordle). It uses Quadtrees for blazing-fast performance. It is maintained by the [KnowledgePicker](https://knowledgepicker.com) team.
 
 ![Sample Word Cloud](example.png)
 
@@ -81,6 +81,12 @@
 
 The world cloud algorithm was initially ported from [SourceCodeCloud](https://archive.codeplex.com/?p=sourcecodecloud). It uses [Quadtrees](https://en.wikipedia.org/wiki/Quadtree), hence it should be reasonably fast. It is inspired by [implementation of Wordle](https://stackoverflow.com/a/1478314) (once famous algorithm used on
 now-defunct site [wordle.net](https://web.archive.org/web/20201206102909/http://www.wordle.net/)).
+
+## Examples
+
+Simple console application which draws word cloud PNG for words given on its standard input is [`WordFrequencies.ConsoleApp`](examples/WordFrequency.ConsoleApp).
+
+This library is also used in production by [KnowledgePicker](https://knowledgepicker.com). They use it to draw [topic clouds for user profiles](https://knowledgepicker.com/profiles).
 
 ## Contributing
 
