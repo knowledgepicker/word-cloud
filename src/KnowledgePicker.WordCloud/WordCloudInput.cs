@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace KnowledgePicker.WordCloud
 {
     /// <summary>
-    /// Input to <see cref="WordCloudGenerator"/>.
+    /// Input to <see cref="WordCloudGenerator{TBitmap}"/>.
     /// </summary>
     public class WordCloudInput
     {
@@ -24,10 +24,6 @@ namespace KnowledgePicker.WordCloud
         /// Margin around each word in the cloud.
         /// </summary>
         public double ItemMargin { get; set; }
-        /// <summary>
-        /// Absolute physical path to font for drawing text.
-        /// </summary>
-        public string? FontPath { get; set; }
         public string TextColor { get; set; } = DefaultTextColor;
         /// <summary>
         /// Rectangle where no words shall be placed.
