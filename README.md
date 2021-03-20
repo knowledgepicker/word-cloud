@@ -47,7 +47,7 @@
    And if we are in a Razor view of an ASP.NET Core application, for example, we can generate SVG from `items`:
 
    ```cshtml
-   <svg viewBox="0,0,@topicCloud.Width,@topicCloud.Height">
+   <svg viewBox="0,0,@wordCloud.Width,@wordCloud.Height">
    @foreach (var (item, fontSize) in items)
    {
        const string format = "0.##"; // Use at most 2 decimal places.
@@ -68,7 +68,7 @@
 
    // Draw on white background.
    canvas.Clear(SKColors.White);
-   canvas.DrawBitmap(tcg.Draw(), 0, 0);
+   canvas.DrawBitmap(wcg.Draw(), 0, 0);
 
    // Save to PNG.
    using var data = final.Encode(SKEncodedImageFormat.Png, 100);
