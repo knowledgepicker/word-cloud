@@ -1,6 +1,7 @@
 # WordCloud for .NET
 
-[![Nuget](https://img.shields.io/nuget/v/KnowledgePicker.WordCloud)](https://www.nuget.org/packages/KnowledgePicker.WordCloud/)
+[![Nuget](https://img.shields.io/nuget/v/KnowledgePicker.WordCloud?logo=nuget)](https://www.nuget.org/packages/KnowledgePicker.WordCloud/)
+[![GitHub](https://img.shields.io/github/last-commit/knowledgepicker/word-cloud/master?logo=github)](https://github.com/knowledgepicker/word-cloud)
 
 `KnowledgePicker.WordCloud` is a modern (.NET Standard 2.0) and fast library for arranging and drawing [word clouds](https://knowledgepicker.com/t/427/tag-word-cloud) (a.k.a. tag clouds or wordle).
 
