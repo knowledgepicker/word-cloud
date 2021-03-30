@@ -55,7 +55,6 @@
        var x = (item.Location.X - item.Measured.Left).ToString(format);
        var y = (item.Location.Y - item.Measured.Top).ToString(format);
        var fs = fontSize.ToString(format);
-       var delay = (index * 0.03).ToString(format);
        <text transform="translate(@x, @y)" font-size="@fs">@item.Entry.Word</text>
    }
    </svg>
