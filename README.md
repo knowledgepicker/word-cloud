@@ -10,7 +10,7 @@
 ## How to use
 
 1. Install [NuGet package `KnowledgePicker.WordCloud`](https://www.nuget.org/packages/KnowledgePicker.WordCloud/).
-2. Get collection of `WordCloudEntry`s. For example if you have dictionary of word frequencies:
+2. Get collection of `WordCloudEntry`s. For example, suppose we have dictionary of word frequencies:
 
    ```cs
    var frequencies = new Dictionary<string, int>();
@@ -30,7 +30,7 @@
    };
    ```
 
-4. We need to create drawing engine, font sizer and layout. Currently we use [SkiaSharp](https://github.com/mono/SkiaSharp) for fast cross-platform font measuring (and drawing). We also only support logarithmic font sizes and spiral layout. All these things are implemented in a generic way and can be easily extended (contributions are welcome).
+4. We need to create drawing engine, font sizer and layout. Currently, we use [SkiaSharp](https://github.com/mono/SkiaSharp) for fast cross-platform font measuring (and drawing). We also only support logarithmic font sizes and spiral layout. All these things are implemented in a generic way and can be easily extended (contributions are welcome).
 
    ```cs
    var sizer = new LogSizer(wordCloud);
@@ -39,7 +39,7 @@
    var wcg = new WordCloudGenerator<SKBitmap>(wordCloud, engine, layout);
    ```
 
-5. Now you can *arrange* the topic cloud:
+5. Now we can *arrange* the topic cloud:
 
    ```cs
    IEnumerable<(LayoutItem Item, double FontSize)> items = wcg.Arrange();
