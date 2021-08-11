@@ -93,7 +93,7 @@ As mentioned [above](#how-to-use), only subset of functionality is implemented n
 
 ### Creating NuGet package
 
-Until we have a CI pipeline, this is how we release new version of the package (don't forget to replace 1.0.0 by the correct version):
+Until we have a CI pipeline, this is how we release new version of the package (don't forget to replace 1.0.0 with the correct version):
 
 ```bash
 cd src/KnowledgePicker.WordCloud
