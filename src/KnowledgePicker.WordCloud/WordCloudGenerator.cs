@@ -70,20 +70,5 @@ namespace KnowledgePicker.WordCloud
                 return engine.Bitmap;
             });
         }
-
-        //private string GetTextColor(bool randomColoredText)
-        //{
-        //    string randomColor;
-        //    if (randomColoredText)
-        //    {
-        //        randomColor = colorizer.GetColorAsHex();
-        //    }
-        //    else
-        //    {
-        //        randomColor = WordCloudInput.DefaultTextColor;
-        //    }
-
-        //    return randomColor;
-        //}
     }
 }
