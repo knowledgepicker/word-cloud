@@ -23,13 +23,15 @@ namespace KnowledgePicker.WordCloud
         private readonly WordCloudInput wordCloud;
         private readonly IGraphicEngine<TBitmap> engine;
         private readonly ILayout layout;
+        private readonly IColorizer colorizer;
 
         public WordCloudGenerator(WordCloudInput wordCloud,
-            IGraphicEngine<TBitmap> engine, ILayout layout)
+            IGraphicEngine<TBitmap> engine, ILayout layout, IColorizer colorizer)
         {
             this.wordCloud = wordCloud;
             this.engine = engine;
             this.layout = layout;
+            this.colorizer = colorizer;
         }
 
         private T Process<T>(
@@ -59,14 +61,29 @@ namespace KnowledgePicker.WordCloud
         /// cref="IGraphicEngine{TBitmap}.Bitmap"/>.
         /// </summary>
         public TBitmap Draw()
-        {
+        {       
             return Process((engine, items) =>
             {
                 // Draw words.
                 foreach (var item in items)
-                    engine.Draw(item.Location, item.Measured, item.Entry.Word, item.Entry.Count);
+                    engine.Draw(item.Location, item.Measured, item.Entry.Word, item.Entry.Count, colorizer.GetColorAsHex());
                 return engine.Bitmap;
             });
         }
+
+        //private string GetTextColor(bool randomColoredText)
+        //{
+        //    string randomColor;
+        //    if (randomColoredText)
+        //    {
+        //        randomColor = colorizer.GetColorAsHex();
+        //    }
+        //    else
+        //    {
+        //        randomColor = WordCloudInput.DefaultTextColor;
+        //    }
+
+        //    return randomColor;
+        //}
     }
 }

@@ -26,10 +26,14 @@ namespace KnowledgePicker.WordCloud.Drawing
         /// Draws <paramref name="text"/> with weight proportional to
         /// <paramref name="count"/>.
         /// </summary>
+        /// <param name="location"></param>
         /// <param name="measured">
         /// Result of <see cref="Measure(string, int)"/>.
         /// </param>
-        void Draw(PointD location, RectangleD measured, string text, int count);
+        /// <param name="text"></param>
+        /// <param name="count"></param>
+        /// <param name="randomColorHex"></param>
+        void Draw(PointD location, RectangleD measured, string text, int count, string randomColorHex);
     }
 
     public interface IGraphicEngine<TBitmap> : IGraphicEngine

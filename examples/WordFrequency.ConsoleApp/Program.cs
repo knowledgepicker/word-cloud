@@ -31,17 +31,27 @@ namespace WordFrequency.ConsoleApp
                 // Process words on input.
                 var freqs = new Dictionary<string, int>();
                 var whitespaces = new Regex(@"\s+");
-                while (Console.ReadLine() is string line)
+
+                var lines = File.ReadLines("../../counts.csv").ToArray();
+
+                foreach (var line in lines)
                 {
-                    foreach (var word in whitespaces.Split(line))
-                    {
-                        if (!freqs.TryGetValue(word, out var freq))
-                        {
-                            freq = 0;
-                        }
-                        freqs[word] = freq + 1;
-                    }
+                    var textValue = line.Split(new char[] { ',' });
+                    freqs.Add(textValue[0], int.Parse(textValue[1]));
+                   
                 }
+
+                //while (Console.ReadLine() is string line)
+                //{
+                //    foreach (var word in whitespaces.Split(line))
+                //    {
+                //        if (!freqs.TryGetValue(word, out var freq))
+                //        {
+                //            freq = 0;
+                //        }
+                //        freqs[word] = freq + 1;
+                //    }
+                //}
 
                 // Generate topic cloud.
                 var wordCloud = new WordCloudInput(
@@ -55,7 +65,8 @@ namespace WordFrequency.ConsoleApp
                 var sizer = new LogSizer(wordCloud);
                 using var engine = new SkGraphicEngine(sizer, wordCloud);
                 var layout = new SpiralLayout(wordCloud);
-                var wcg = new WordCloudGenerator<SKBitmap>(wordCloud, engine, layout);
+                var colorizer = new RandomColorizer();    
+                var wcg = new WordCloudGenerator<SKBitmap>(wordCloud, engine, layout, colorizer);
 
                 // Draw the bitmap on white background.
                 using var final = new SKBitmap(wordCloud.Width, wordCloud.Height);

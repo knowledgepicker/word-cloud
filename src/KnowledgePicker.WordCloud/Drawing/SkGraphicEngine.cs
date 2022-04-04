@@ -40,11 +40,12 @@ namespace KnowledgePicker.WordCloud.Drawing
             return new RectangleD(rect.Left + m, rect.Top + m, rect.Width + 2 * m, rect.Height + 2 * m);
         }
 
-        public void Draw(PointD location, RectangleD measured, string text, int count)
+        public void Draw(PointD location, RectangleD measured, string text, int count, string? randomColorHex)
         {
             // For computation explanation, see
             // https://docs.microsoft.com/en-us/xamarin/xamarin-forms/user-interface/graphics/skiasharp/basics/text.
             textPaint.TextSize = (float)Sizer.GetFontSize(count);
+            textPaint.Color = SKColor.Parse(randomColorHex);
             canvas.DrawText(text, (float)(location.X - measured.Left),
                 (float)(location.Y - measured.Top), textPaint);
         }
