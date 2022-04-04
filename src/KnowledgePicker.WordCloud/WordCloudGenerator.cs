@@ -27,7 +27,8 @@ namespace KnowledgePicker.WordCloud
         private readonly IColorizer colorizer;
 
         public WordCloudGenerator(WordCloudInput wordCloud,
-            IGraphicEngine<TBitmap> engine, ILayout layout, IColorizer colorizer)
+            IGraphicEngine<TBitmap> engine, ILayout layout,
+            IColorizer? colorizer = null)
         {
             this.wordCloud = wordCloud;
             this.engine = engine;
@@ -67,7 +68,7 @@ namespace KnowledgePicker.WordCloud
             {
                 // Draw words.
                 foreach (var item in items)
-                    engine.Draw(item.Location, item.Measured, item.Entry.Word, item.Entry.Count, colorizer.GetColorAsHex());
+                    engine.Draw(item.Location, item.Measured, item.Entry.Word, item.Entry.Count, colorizer?.GetColorAsHex());
                 return engine.Bitmap;
             });
         }

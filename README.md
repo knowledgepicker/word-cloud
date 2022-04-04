@@ -36,7 +36,7 @@
    var sizer = new LogSizer(wordCloud);
    using var engine = new SkGraphicEngine(sizer, wordCloud);
    var layout = new SpiralLayout(wordCloud);
-   var colorizer = new RandomColorizer();    
+   var colorizer = new RandomColorizer(); // optional
    var wcg = new WordCloudGenerator<SKBitmap>(wordCloud, engine, layout, colorizer);
    ```
 
