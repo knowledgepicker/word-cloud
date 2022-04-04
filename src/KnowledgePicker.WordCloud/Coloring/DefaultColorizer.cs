@@ -1,4 +1,4 @@
-namespace KnowledgePicker.WordCloud.Drawing
+namespace KnowledgePicker.WordCloud.Coloring
 {
     /// <summary>
     /// Gets the default color set in the WordCloudInput

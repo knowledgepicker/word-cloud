@@ -1,7 +1,7 @@
 using System;
 using System.Drawing;
 
-namespace KnowledgePicker.WordCloud.Drawing
+namespace KnowledgePicker.WordCloud.Coloring
 {
     /// <summary>
     /// Allows random colors for the word cloud text

@@ -1,4 +1,5 @@
 using KnowledgePicker.WordCloud;
+using KnowledgePicker.WordCloud.Coloring;
 using KnowledgePicker.WordCloud.Drawing;
 using KnowledgePicker.WordCloud.Layouts;
 using KnowledgePicker.WordCloud.Primitives;
@@ -56,7 +57,7 @@ namespace WordFrequency.ConsoleApp
                 var sizer = new LogSizer(wordCloud);
                 using var engine = new SkGraphicEngine(sizer, wordCloud);
                 var layout = new SpiralLayout(wordCloud);
-                var colorizer = new RandomColorizer();   //new DefaultColorizer(); uses default color set in WordCloudInput 
+                var colorizer = new RandomColorizer();   //new DefaultColorizer(); uses default color set in WordCloudInput
                 var wcg = new WordCloudGenerator<SKBitmap>(wordCloud, engine, layout, colorizer);
 
                 // Draw the bitmap on white background.

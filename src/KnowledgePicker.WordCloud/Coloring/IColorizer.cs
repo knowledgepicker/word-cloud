@@ -1,4 +1,4 @@
-namespace KnowledgePicker.WordCloud.Drawing
+namespace KnowledgePicker.WordCloud.Coloring
 {
     public interface IColorizer
     {

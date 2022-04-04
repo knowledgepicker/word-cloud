@@ -1,3 +1,4 @@
+using KnowledgePicker.WordCloud.Coloring;
 using KnowledgePicker.WordCloud.Drawing;
 using KnowledgePicker.WordCloud.Layouts;
 using KnowledgePicker.WordCloud.Primitives;
@@ -61,7 +62,7 @@ namespace KnowledgePicker.WordCloud
         /// cref="IGraphicEngine{TBitmap}.Bitmap"/>.
         /// </summary>
         public TBitmap Draw()
-        {       
+        {
             return Process((engine, items) =>
             {
                 // Draw words.
