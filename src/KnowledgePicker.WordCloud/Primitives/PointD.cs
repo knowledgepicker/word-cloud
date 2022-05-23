@@ -1,5 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace KnowledgePicker.WordCloud.Primitives
 {
+    [SuppressMessage("Performance",
+        "CA1815: Override equals and operator equals on value types")]
     public readonly struct PointD
     {
         public PointD(double x, double y)
