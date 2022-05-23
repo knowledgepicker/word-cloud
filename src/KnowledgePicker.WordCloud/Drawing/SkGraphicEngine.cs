@@ -14,7 +14,7 @@ namespace KnowledgePicker.WordCloud.Drawing
         private readonly WordCloudInput wordCloud;
 
         public SkGraphicEngine(ISizer sizer, WordCloudInput wordCloud,
-            SKTypeface? font = null)
+            SKTypeface? font = null, bool antialias = true)
         {
             Sizer = sizer;
             Bitmap = new SKBitmap(wordCloud.Width, wordCloud.Height);
@@ -22,7 +22,8 @@ namespace KnowledgePicker.WordCloud.Drawing
             textPaint = new SKPaint
             {
                 Color = SKColor.Parse(wordCloud.TextColor),
-                Typeface = font
+                Typeface = font,
+                IsAntialias = antialias
             };
             this.wordCloud = wordCloud;
         }
