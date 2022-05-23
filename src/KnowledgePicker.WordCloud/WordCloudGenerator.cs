@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+[assembly: CLSCompliant(false)]
+
 namespace KnowledgePicker.WordCloud
 {
     /// <summary>
@@ -24,7 +26,7 @@ namespace KnowledgePicker.WordCloud
         private readonly WordCloudInput wordCloud;
         private readonly IGraphicEngine<TBitmap> engine;
         private readonly ILayout layout;
-        private readonly IColorizer colorizer;
+        private readonly IColorizer? colorizer;
 
         public WordCloudGenerator(WordCloudInput wordCloud,
             IGraphicEngine<TBitmap> engine, ILayout layout,
