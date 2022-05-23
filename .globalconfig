@@ -1,0 +1,14 @@
+# See https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/configuration-files#global-analyzerconfig.
+
+is_global = true
+
+# CA1062: Validate arguments of public methods
+dotnet_diagnostic.CA1062.severity = silent
+
+# CS1573: Parameter 'parameter' has no matching param tag in the XML comment for
+# 'parameter' (but other parameters do)
+dotnet_diagnostic.CS1573.severity = silent
+
+# CS1591: Missing XML comment for publicly visible type or member
+# 'Type_or_Member'
+dotnet_diagnostic.CS1591.severity = silent
