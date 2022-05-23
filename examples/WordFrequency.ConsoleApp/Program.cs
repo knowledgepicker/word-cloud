@@ -46,13 +46,14 @@ namespace WordFrequency.ConsoleApp
                 }
 
                 // Generate topic cloud.
+                const int k = 4; // scale
                 var wordCloud = new WordCloudInput(
                     freqs.Select(p => new WordCloudEntry(p.Key, p.Value)))
                 {
-                    Width = 1024,
-                    Height = 256,
-                    MinFontSize = 8,
-                    MaxFontSize = 32
+                    Width = 1024 * k,
+                    Height = 256 * k,
+                    MinFontSize = 8 * k,
+                    MaxFontSize = 32 * k
                 };
                 var sizer = new LogSizer(wordCloud);
                 using var engine = new SkGraphicEngine(sizer, wordCloud);
