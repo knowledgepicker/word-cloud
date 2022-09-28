@@ -81,6 +81,10 @@ public class IntegrationTests
             freqs[word] = freq + 1;
         }
 
+        // Load font.
+        var typeface = SKTypeface.FromFamilyName("DejaVu Serif",
+            SKFontStyle.Normal);
+
         // Generate topic cloud.
         const int k = 4; // scale
         var wordCloud = new WordCloudInput(
@@ -92,7 +96,7 @@ public class IntegrationTests
             MaxFontSize = 32 * k
         };
         var sizer = new LogSizer(wordCloud);
-        using var engine = new SkGraphicEngine(sizer, wordCloud);
+        using var engine = new SkGraphicEngine(sizer, wordCloud, typeface);
         var layout = new SpiralLayout(wordCloud);
         var wcg = new WordCloudGenerator<SKBitmap>(wordCloud, engine, layout);
 
