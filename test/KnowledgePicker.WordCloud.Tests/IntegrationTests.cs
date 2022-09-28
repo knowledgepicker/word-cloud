@@ -5,6 +5,7 @@ using KnowledgePicker.WordCloud.Sizers;
 using SkiaSharp;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
+using Xunit.Sdk;
 
 namespace KnowledgePicker.WordCloud.Tests;
 
@@ -51,7 +52,15 @@ public class IntegrationTests
         // Assert.
         if (File.Exists(path))
         {
-            Assert.Equal(File.ReadAllBytes(path), actual);
+            try
+            {
+                Assert.Equal(File.ReadAllBytes(path), actual);
+            }
+            catch (EqualException)
+            {
+                File.WriteAllBytes(path, actual);
+                throw;
+            }
         }
         else
         {

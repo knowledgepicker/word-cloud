@@ -15,6 +15,11 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+    - name: Setup Git
+      run: |
+        git config --global url."https://user:${{ secrets.GITHUB_TOKEN }}@github".insteadOf https://github
+        git config --global user.name github-actions
+        git config --global user.email github-actions@github.com
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
@@ -25,3 +30,7 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Process test results
+      if: ${{ success() || failure() }}
+      shell: pwsh
+      run: ./eng/process-test-results.ps1
