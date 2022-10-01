@@ -7,7 +7,7 @@ Set-StrictMode -version 2.0
 $ErrorActionPreference = "Stop"
 
 # If snapshots are changed, create a pull request.
-if (git status --porcelain | ForEach-Object { $_.Trim() } | Where-Object { $_ }) {
+if (git status --porcelain) {
     $currentBranch = $(git branch --show-current)
 
     # Avoid making new PR against snapshot-updating PR.
