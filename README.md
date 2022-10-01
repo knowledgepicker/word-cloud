@@ -92,11 +92,6 @@ This library is also used in production by [KnowledgePicker](https://knowledgepi
 
 As mentioned [above](#how-to-use), only subset of functionality is implemented now, but all contributions are welcome. Feel free to open [issues](https://github.com/knowledgepicker/word-cloud/issues) and [pull requests](https://github.com/knowledgepicker/word-cloud/pulls).
 
-### Creating NuGet package
+### Release process
 
-Until we have a CI pipeline, this is how we release new version of the package (don't forget to replace 1.0.0 with the correct version):
-
-```bash
-cd src/KnowledgePicker.WordCloud
-dotnet pack -c Release --include-symbols --include-source -p:PackageVersion=1.0.0
-```
+After pushing a tag, GitHub workflow `release.yml` is triggered which builds and publishes the NuGet package.
