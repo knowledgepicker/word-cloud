@@ -34,3 +34,5 @@ jobs:
       if: ${{ success() || failure() }}
       shell: pwsh
       run: ./eng/process-test-results.ps1
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
