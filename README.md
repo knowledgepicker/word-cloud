@@ -10,6 +10,9 @@
 ## How to use
 
 1. Install [NuGet package `KnowledgePicker.WordCloud`](https://www.nuget.org/packages/KnowledgePicker.WordCloud/).
+
+   > **Note** There's currently only one drawing engine based on [SkiaSharp](https://github.com/mono/SkiaSharp). On some platforms, additional dependencies need to be installed to make SkiaSharp work correctly. For example, on Linux, add [SkiaSharp.NativeAssets.Linux](https://www.nuget.org/packages/SkiaSharp.NativeAssets.Linux); for Blazor WebAssembly, add [SkiaSharp.Views.Blazor](https://www.nuget.org/packages/SkiaSharp.Views.Blazor).
+
 2. Get collection of `WordCloudEntry`s. For example, suppose we have dictionary of word frequencies:
 
    ```cs
