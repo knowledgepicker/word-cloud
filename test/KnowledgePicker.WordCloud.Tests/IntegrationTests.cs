@@ -15,7 +15,6 @@ public class IntegrationTests
     public void ExampleTest()
     {
         // Arrange.
-        var path = Resolve("Assets/example.png");
         var text = "WordCloud for NET is a modern NET Standard 2.0 and fast " +
             "library for arranging and drawing word clouds a.k.a tag clouds " +
             "or wordle It uses Quadtrees for blazing-fast performance It is " +
@@ -50,23 +49,7 @@ public class IntegrationTests
         var actual = GenerateWordCloud(text);
 
         // Assert.
-        if (File.Exists(path))
-        {
-            try
-            {
-                Assert.Equal(File.ReadAllBytes(path), actual);
-            }
-            catch (EqualException)
-            {
-                File.WriteAllBytes(path, actual);
-                throw;
-            }
-        }
-        else
-        {
-            Directory.CreateDirectory(Path.GetDirectoryName(path)!);
-            File.WriteAllBytes(path, actual);
-        }
+        AssertSnapshot("Assets/example.png", actual);
     }
 
     private static string Resolve(string fileName,
@@ -120,5 +103,27 @@ public class IntegrationTests
         using var stream = new MemoryStream();
         data.SaveTo(stream);
         return stream.ToArray();
+    }
+
+    private static void AssertSnapshot(string path, byte[] actual)
+    {
+        path = Resolve(path);
+        if (File.Exists(path))
+        {
+            try
+            {
+                Assert.Equal(File.ReadAllBytes(path), actual);
+            }
+            catch (EqualException)
+            {
+                File.WriteAllBytes(path, actual);
+                throw;
+            }
+        }
+        else
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+            File.WriteAllBytes(path, actual);
+        }
     }
 }
