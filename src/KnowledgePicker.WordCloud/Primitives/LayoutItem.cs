@@ -3,7 +3,7 @@ namespace KnowledgePicker.WordCloud.Primitives
     /// <summary>
     /// Word arranged somewhere in word cloud.
     /// </summary>
-    public class LayoutItem
+    public record LayoutItem
     {
         public LayoutItem(WordCloudEntry entry, PointD location, RectangleD measured)
         {

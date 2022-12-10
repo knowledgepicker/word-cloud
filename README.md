@@ -95,6 +95,10 @@ This library is also used in production by [KnowledgePicker](https://knowledgepi
 
 As mentioned [above](#how-to-use), only subset of functionality is implemented now, but all contributions are welcome. Feel free to open [issues](https://github.com/knowledgepicker/word-cloud/issues) and [pull requests](https://github.com/knowledgepicker/word-cloud/pulls).
 
+### Testing
+
+Tests are currently only supported on Linux, because they are snapshot tests (generating a word cloud image and comparing it byte-by-byte with a snapshot) and more work is needed to ensure this is cross-platform (e.g., use exactly the same font). On Windows, tests can be run in WSL (Visual Studio supports this directly). Tests are also automatically run in GitHub Actions.
+
 ### Release process
 
 After pushing a tag, GitHub workflow `release.yml` is triggered which builds and publishes the NuGet package.

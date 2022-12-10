@@ -13,6 +13,16 @@ namespace KnowledgePicker.WordCloud.Drawing
         private readonly SKPaint textPaint;
         private readonly WordCloudInput wordCloud;
 
+        private SkGraphicEngine(ISizer sizer, WordCloudInput wordCloud,
+            SKPaint textPaint)
+        {
+            Sizer = sizer;
+            this.wordCloud = wordCloud;
+            this.textPaint = textPaint;
+            Bitmap = new SKBitmap(wordCloud.Width, wordCloud.Height);
+            canvas = new SKCanvas(Bitmap);
+        }
+
         public SkGraphicEngine(ISizer sizer, WordCloudInput wordCloud,
             SKTypeface? font = null, bool antialias = true)
         {
@@ -50,6 +60,11 @@ namespace KnowledgePicker.WordCloud.Drawing
                 textPaint.Color = SKColor.Parse(colorHex);
             canvas.DrawText(text, (float)(location.X - measured.Left),
                 (float)(location.Y - measured.Top), textPaint);
+        }
+
+        public IGraphicEngine<SKBitmap> Clone()
+        {
+            return new SkGraphicEngine(Sizer, wordCloud, textPaint);
         }
 
         public void Dispose()

@@ -39,6 +39,8 @@ namespace KnowledgePicker.WordCloud.Layouts
             return QuadTree.Query(area);
         }
 
+        public abstract ILayout Clone();
+
         protected bool IsInsideSurface(RectangleD targetRectangle)
         {
             return IsInside(Surface, targetRectangle);
