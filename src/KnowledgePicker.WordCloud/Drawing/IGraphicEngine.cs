@@ -35,5 +35,7 @@ namespace KnowledgePicker.WordCloud.Drawing
     public interface IGraphicEngine<TBitmap> : IGraphicEngine
     {
         TBitmap Bitmap { get; }
+
+        IGraphicEngine<TBitmap> Clone();
     }
 }

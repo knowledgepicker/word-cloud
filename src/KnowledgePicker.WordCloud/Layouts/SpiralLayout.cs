@@ -40,6 +40,11 @@ namespace KnowledgePicker.WordCloud.Layouts
             return false;
         }
 
+        public override ILayout Clone()
+        {
+            return new SpiralLayout(WordCloud);
+        }
+
         private static double GetPseudoRandomStartAngle(SizeD size)
         {
             return size.Height * size.Width;

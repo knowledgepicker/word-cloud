@@ -41,13 +41,19 @@ namespace KnowledgePicker.WordCloud
         private T Process<T>(
             Func<IGraphicEngine<TBitmap>, IEnumerable<LayoutItem>, T> handler)
         {
+            // Ensure state is not shared.
+            // TODO: We should instead use factory pattern.
+            // But that would be a big change in usage of this class.
+            var localEngine = engine.Clone();
+            var localLayout = layout.Clone();
+
             // Arrange word cloud.
             var size = new SizeD(wordCloud.Width, wordCloud.Height);
-            layout.Arrange(wordCloud.Entries, engine);
+            localLayout.Arrange(wordCloud.Entries, localEngine);
 
             // Process results.
             var area = new RectangleD(new PointD(0, 0), size);
-            return handler(engine, layout.GetWordsInArea(area));
+            return handler(localEngine, localLayout.GetWordsInArea(area));
         }
 
         public IEnumerable<(LayoutItem Item, double FontSize)> Arrange()

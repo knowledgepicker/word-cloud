@@ -11,5 +11,6 @@ namespace KnowledgePicker.WordCloud.Layouts
     {
         int Arrange(IEnumerable<WordCloudEntry> entries, IGraphicEngine engine);
         IEnumerable<LayoutItem> GetWordsInArea(RectangleD area);
+        ILayout Clone();
     }
 }
