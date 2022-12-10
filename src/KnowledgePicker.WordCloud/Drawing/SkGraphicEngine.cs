@@ -1,6 +1,8 @@
 using KnowledgePicker.WordCloud.Primitives;
 using KnowledgePicker.WordCloud.Sizers;
 using SkiaSharp;
+using System;
+using System.Collections.Generic;
 
 namespace KnowledgePicker.WordCloud.Drawing
 {
@@ -13,9 +15,15 @@ namespace KnowledgePicker.WordCloud.Drawing
         private readonly SKPaint textPaint;
         private readonly WordCloudInput wordCloud;
 
+        /// <summary>
+        /// <see langword="null"/> if this is a clone.
+        /// </summary>
+        private readonly List<SkGraphicEngine>? clones;
+
         private SkGraphicEngine(ISizer sizer, WordCloudInput wordCloud,
             SKPaint textPaint)
         {
+            clones = null;
             Sizer = sizer;
             this.wordCloud = wordCloud;
             this.textPaint = textPaint;
@@ -26,6 +34,7 @@ namespace KnowledgePicker.WordCloud.Drawing
         public SkGraphicEngine(ISizer sizer, WordCloudInput wordCloud,
             SKTypeface? font = null, bool antialias = true)
         {
+            clones = new();
             Sizer = sizer;
             Bitmap = new SKBitmap(wordCloud.Width, wordCloud.Height);
             canvas = new SKCanvas(Bitmap);
@@ -64,14 +73,25 @@ namespace KnowledgePicker.WordCloud.Drawing
 
         public IGraphicEngine<SKBitmap> Clone()
         {
-            return new SkGraphicEngine(Sizer, wordCloud, textPaint);
+            if (clones == null)
+            {
+                throw new InvalidOperationException("Cannot clone a clone.");
+            }
+
+            var clone = new SkGraphicEngine(Sizer, wordCloud, textPaint);
+            clones.Add(clone);
+            return clone;
         }
 
         public void Dispose()
         {
-            textPaint.Dispose();
-            canvas.Dispose();
-            Bitmap.Dispose();
+            if (clones != null)
+            {
+                textPaint.Dispose();
+                canvas.Dispose();
+                Bitmap.Dispose();
+                clones.ForEach(c => c.Dispose());
+            }
         }
     }
 }

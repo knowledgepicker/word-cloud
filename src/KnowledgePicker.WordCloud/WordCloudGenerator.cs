@@ -44,7 +44,7 @@ namespace KnowledgePicker.WordCloud
             // Ensure state is not shared.
             // TODO: We should instead use factory pattern.
             // But that would be a big change in usage of this class.
-            var localEngine = engine.Clone();
+            using var localEngine = engine.Clone();
             var localLayout = layout.Clone();
 
             // Arrange word cloud.
