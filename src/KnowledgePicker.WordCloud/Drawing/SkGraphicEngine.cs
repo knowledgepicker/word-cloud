@@ -12,6 +12,7 @@ namespace KnowledgePicker.WordCloud.Drawing
         private readonly SKCanvas canvas;
         private readonly SKPaint textPaint;
         private readonly WordCloudInput wordCloud;
+        private readonly bool ownsTextPaint;
         private bool bitmapExtracted;
 
         private SkGraphicEngine(ISizer sizer, WordCloudInput wordCloud,
@@ -36,6 +37,7 @@ namespace KnowledgePicker.WordCloud.Drawing
                 Typeface = font,
                 IsAntialias = antialias
             };
+            ownsTextPaint = true;
             this.wordCloud = wordCloud;
         }
 
@@ -65,7 +67,7 @@ namespace KnowledgePicker.WordCloud.Drawing
 
         public IGraphicEngine<SKBitmap> Clone()
         {
-            return new SkGraphicEngine(Sizer, wordCloud, textPaint.Clone());
+            return new SkGraphicEngine(Sizer, wordCloud, textPaint);
         }
 
         public SKBitmap ExtractBitmap()
@@ -76,7 +78,10 @@ namespace KnowledgePicker.WordCloud.Drawing
 
         public void Dispose()
         {
-            textPaint.Dispose();
+            if (ownsTextPaint)
+            {
+                textPaint.Dispose();
+            }
             canvas.Dispose();
             if (!bitmapExtracted)
             {
