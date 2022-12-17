@@ -77,7 +77,7 @@ namespace KnowledgePicker.WordCloud
                 // Draw words.
                 foreach (var item in items)
                     engine.Draw(item.Location, item.Measured, item.Entry.Word, item.Entry.Count, colorizer?.GetColorAsHex());
-                return engine.Bitmap;
+                return engine.ExtractBitmap();
             });
         }
     }

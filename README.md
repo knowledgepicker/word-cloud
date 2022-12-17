@@ -67,12 +67,13 @@
 6. Alternatively, we can *draw* the topic cloud (see also [example `WordFrequencies.ConsoleApp`](examples/WordFrequency.ConsoleApp)):
 
    ```cs
-   using var bitmap = new SKBitmap(wordCloud.Width, wordCloud.Height);
-   using var canvas = new SKCanvas(bitmap);
+   using var final = new SKBitmap(wordCloud.Width, wordCloud.Height);
+   using var canvas = new SKCanvas(final);
 
    // Draw on white background.
    canvas.Clear(SKColors.White);
-   canvas.DrawBitmap(wcg.Draw(), 0, 0);
+   using var bitmap = wcg.Draw();
+   canvas.DrawBitmap(bitmap, 0, 0);
 
    // Save to PNG.
    using var data = final.Encode(SKEncodedImageFormat.Png, 100);

@@ -37,5 +37,7 @@ namespace KnowledgePicker.WordCloud.Drawing
         TBitmap Bitmap { get; }
 
         IGraphicEngine<TBitmap> Clone();
+
+        TBitmap ExtractBitmap();
     }
 }

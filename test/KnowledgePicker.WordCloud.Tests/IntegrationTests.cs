@@ -96,7 +96,8 @@ public class IntegrationTests
         using var final = new SKBitmap(wordCloud.Width, wordCloud.Height);
         using var canvas = new SKCanvas(final);
         canvas.Clear(SKColors.White);
-        canvas.DrawBitmap(wcg.Draw(), 0, 0);
+        using var bitmap = wcg.Draw();
+        canvas.DrawBitmap(bitmap, 0, 0);
 
         // Save to PNG.
         using var data = final.Encode(SKEncodedImageFormat.Png, 100);
