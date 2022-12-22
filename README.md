@@ -43,6 +43,18 @@
    var wcg = new WordCloudGenerator<SKBitmap>(wordCloud, engine, layout, colorizer);
    ```
 
+   You can also use `SpecificColorizer` to colorize specific words with chosen colors:
+
+   ```cs
+   var colorizer = new SpecificColorizer(
+       new Dictionary<string, Color>
+       {
+           ["KnowledgePicker"] = Color.FromArgb(0x0f3057),
+           ["WordCloud"] = Color.FromArgb(0xe25a5a)
+       },
+       fallback: new RandomColorizer()); // fallback argument is optional
+   ```
+
 5. Now we can *arrange* the topic cloud:
 
    ```cs

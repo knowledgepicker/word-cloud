@@ -30,4 +30,8 @@
     <PackageReference Include="SkiaSharp" Version="2.88.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="KnowledgePicker.WordCloud.Tests" />
+  </ItemGroup>
+
 </Project>
