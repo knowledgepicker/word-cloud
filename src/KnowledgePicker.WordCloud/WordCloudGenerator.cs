@@ -2,6 +2,7 @@ using KnowledgePicker.WordCloud.Coloring;
 using KnowledgePicker.WordCloud.Drawing;
 using KnowledgePicker.WordCloud.Layouts;
 using KnowledgePicker.WordCloud.Primitives;
+using KnowledgePicker.WordCloud.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,7 +77,14 @@ namespace KnowledgePicker.WordCloud
             {
                 // Draw words.
                 foreach (var item in items)
-                    engine.Draw(item.Location, item.Measured, item.Entry.Word, item.Entry.Count, colorizer?.GetColorAsHex());
+                {
+                    engine.Draw(
+                        item.Location,
+                        item.Measured,
+                        item.Entry.Word,
+                        item.Entry.Count,
+                        colorizer?.GetColor(item)?.ToHexString());
+                }
                 return engine.ExtractBitmap();
             });
         }
