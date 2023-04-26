@@ -74,7 +74,7 @@ public class WordCloudGeneratorTests
         {
             var actualColor = wcg.GetColorHexString(item);
             var actualColorOrDefault = wcg.GetColorHexStringOrDefault(item);
-            
+
             // Assert.
             var expectedColor = item.Entry.Word switch
             {
