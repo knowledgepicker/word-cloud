@@ -5,7 +5,11 @@
 
 `KnowledgePicker.WordCloud` is a modern (.NET Standard 2.0) and fast library for arranging and drawing [word clouds](https://knowledgepicker.com/t/427/tag-word-cloud) (a.k.a. tag clouds or wordle). It uses Quadtrees for blazing-fast performance. It is maintained by the [KnowledgePicker](https://knowledgepicker.com) team.
 
-![Sample Word Cloud](example.png)
+<!--
+  URL needs to be used, so the README works on NuGet.org. See also
+  https://learn.microsoft.com/en-us/nuget/nuget-org/package-readme-on-nuget-org#allowed-domains-for-images-and-badges.
+-->
+![Sample Word Cloud](https://raw.githubusercontent.com/knowledgepicker/word-cloud/master/example.png)
 
 ## How to use
 
@@ -77,7 +81,7 @@
    </svg>
    ```
 
-6. Alternatively, we can *draw* the topic cloud (see also [example `WordFrequencies.ConsoleApp`](examples/WordFrequency.ConsoleApp)):
+6. Alternatively, we can *draw* the topic cloud (see also [example `WordFrequencies.ConsoleApp`](https://github.com/knowledgepicker/word-cloud/tree/master/examples/WordFrequency.ConsoleApp)):
 
    ```cs
    using var final = new SKBitmap(wordCloud.Width, wordCloud.Height);

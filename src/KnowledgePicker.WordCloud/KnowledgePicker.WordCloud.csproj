@@ -18,6 +18,7 @@
     <PackageProjectUrl>https://github.com/knowledgepicker/word-cloud</PackageProjectUrl>
     <PackageTags>WordCloud;TagCloud;Wordle</PackageTags>
     <PackageReleaseNotes>https://github.com/knowledgepicker/word-cloud/releases</PackageReleaseNotes>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/knowledgepicker/word-cloud</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryBranch>master</RepositoryBranch>
@@ -32,6 +33,10 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="KnowledgePicker.WordCloud.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)..\..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
