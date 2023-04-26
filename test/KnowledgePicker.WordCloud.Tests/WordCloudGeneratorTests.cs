@@ -3,6 +3,7 @@ using KnowledgePicker.WordCloud.Drawing;
 using KnowledgePicker.WordCloud.Layouts;
 using KnowledgePicker.WordCloud.Primitives;
 using KnowledgePicker.WordCloud.Sizers;
+using KnowledgePicker.WordCloud.Utilities;
 using SkiaSharp;
 using System.Drawing;
 
@@ -71,16 +72,19 @@ public class WordCloudGeneratorTests
         // Act.
         foreach (var (item, fontSize) in wcg.Arrange())
         {
-            var actualColor = colorizer.GetColor(item);
-
+            var actualColor = wcg.GetColorHexString(item);
+            var actualColorOrDefault = wcg.GetColorHexStringOrDefault(item);
+            
             // Assert.
-            Color? expectedColor = item.Entry.Word switch
+            var expectedColor = item.Entry.Word switch
             {
-                "a" => color1,
-                "b" => color2,
+                "a" => color1.ToHexString(),
+                "b" => color2.ToHexString(),
                 _ => null
             };
+            var expectedColorOrDefault = expectedColor ?? WordCloudInput.DefaultTextColor;
             Assert.Equal(expectedColor, actualColor);
+            Assert.Equal(expectedColorOrDefault, actualColorOrDefault);
         }
     }
 }
