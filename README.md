@@ -71,7 +71,8 @@
        var x = (item.Location.X - item.Measured.Left).ToString(format);
        var y = (item.Location.Y - item.Measured.Top).ToString(format);
        var fs = fontSize.ToString(format);
-       <text transform="translate(@x, @y)" font-size="@fs">@item.Entry.Word</text>
+       var color = wcg.GetColorHexString(item);
+       <text transform="translate(@x, @y)" font-size="@fs" fill="@color">@item.Entry.Word</text>
    }
    </svg>
    ```

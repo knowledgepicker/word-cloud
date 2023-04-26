@@ -88,5 +88,15 @@ namespace KnowledgePicker.WordCloud
                 return engine.ExtractBitmap();
             });
         }
+
+        public string? GetColorHexString(LayoutItem item)
+        {
+            return colorizer?.GetColor(item)?.ToHexString();
+        }
+
+        public string GetColorHexStringOrDefault(LayoutItem item)
+        {
+            return GetColorHexString(item) ?? wordCloud.TextColor;
+        }
     }
 }
