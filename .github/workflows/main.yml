@@ -14,7 +14,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Setup Git
       run: |
         git config --global url."https://user:${{ secrets.GITHUB_TOKEN }}@github".insteadOf https://github
