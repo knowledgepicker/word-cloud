@@ -59,6 +59,13 @@
        fallback: new RandomColorizer()); // fallback argument is optional
    ```
 
+   You can also optionally pass a font into the graphic engine:
+
+   ```cs
+   var typeface = SKTypeface.FromFamilyName("DejaVu Serif", SKFontStyle.Normal);
+   using var engine = new SkGraphicEngine(sizer, wordCloud, typeface);
+   ```
+
 5. Now we can *arrange* the topic cloud:
 
    ```cs
