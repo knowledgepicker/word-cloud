@@ -55,6 +55,30 @@ public class IntegrationTests
         AssertSnapshot("Assets/example.png", actual);
     }
 
+    [Fact] // https://github.com/knowledgepicker/word-cloud/issues/63
+    public void Chinese()
+    {
+        // Act.
+        var actual = GenerateWordCloudFromFrequencies(
+            new() {
+                { "游戏剪辑", 10 },
+                { "宗教仪式", 5 },
+                { "鬼畜", 8 },
+                { "IKUN", 3 },
+                { "Vtuber", 6 },
+                { "原神", 7 },
+                { "米哈游", 4 },
+                { "B站", 9 },
+                { "哔哩哔哩", 2 },
+                { "UP主", 1 },
+            },
+            colorizer: new RandomColorizer(seed: 42),
+            fontName: "AR PL UKai CN");
+
+        // Assert.
+        AssertSnapshot("Assets/chinese.png", actual);
+    }
+
     [Fact]
     public void RandomColorizer()
     {
@@ -149,9 +173,19 @@ public class IntegrationTests
             freqs[word] = freq + 1;
         }
 
+        return GenerateWordCloudFromFrequencies(freqs, colorizer, configureInput);
+    }
+
+    private static byte[] GenerateWordCloudFromFrequencies(
+        Dictionary<string, int> freqs,
+        IColorizer? colorizer = null,
+        Action<WordCloudInput>? configureInput = null,
+        string? fontName = "DejaVu Serif")
+    {
         // Load font.
-        var typeface = SKTypeface.FromFamilyName("DejaVu Serif",
-            SKFontStyle.Normal);
+        var typeface = fontName is null
+            ? null
+            : SKTypeface.FromFamilyName(fontName, SKFontStyle.Normal);
 
         // Generate topic cloud.
         const int k = 4; // scale
