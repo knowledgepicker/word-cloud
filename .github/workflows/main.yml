@@ -33,6 +33,6 @@ jobs:
     - name: Process test results
       if: ${{ success() || failure() }}
       shell: pwsh
-      run: ./eng/process-test-results.ps1
+      run: ./eng/process-test-results.ps1 -Branch "${{ github.head_ref || github.ref_name }}"
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

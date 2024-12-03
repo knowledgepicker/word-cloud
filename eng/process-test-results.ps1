@@ -1,5 +1,6 @@
 [CmdletBinding(PositionalBinding=$false)]
 param (
+    $branch = $null,
     [switch]$dry = $false
 )
 
@@ -8,7 +9,8 @@ $ErrorActionPreference = "Stop"
 
 # If snapshots are changed, create a pull request.
 if (git status --porcelain) {
-    $currentBranch = $(git branch --show-current)
+    $currentBranch = $branch ?? $(git branch --show-current)
+    Write-Output "Branch: '$currentBranch'"
 
     # Avoid making new PR against snapshot-updating PR.
     if ($currentBranch.StartsWith("update-snapshots")) {
@@ -23,14 +25,10 @@ if (git status --porcelain) {
 
     git branch -D update-snapshots/$currentBranch
     git checkout -b update-snapshots/$currentBranch
-    try {
-        git commit -am "Update snapshots"
-        git push -f origin update-snapshots/$currentBranch
-        gh pr create --base $currentBranch --title "Update snapshots" `
-            --body "Generate automatically by script ``process-test-results.ps1``."
-    } finally {
-        git checkout $currentBranch
-    }
+    git commit -am "Update snapshots"
+    git push -f origin update-snapshots/$currentBranch
+    gh pr create --base $currentBranch --title "Update snapshots" `
+        --body "Generated automatically by script ``process-test-results.ps1``."
 } else {
     Write-Output "No changes in snapshots"
 }

@@ -12,16 +12,20 @@ namespace KnowledgePicker.WordCloud.Drawing
         private readonly SKCanvas canvas;
         private readonly SKColor defaultColor;
         private readonly SKPaint textPaint;
+        private readonly SKTypeface? typeface;
+        private readonly SKFont font;
         private readonly WordCloudInput wordCloud;
         private bool bitmapExtracted;
 
         private SkGraphicEngine(ISizer sizer, WordCloudInput wordCloud,
-            SKPaint textPaint)
+            SKPaint textPaint, SKTypeface? typeface = null)
         {
             Sizer = sizer;
             this.wordCloud = wordCloud;
             defaultColor = textPaint.Color;
             this.textPaint = textPaint;
+            this.typeface = typeface;
+            font = typeface is null ? new SKFont() : new SKFont(typeface);
             Bitmap = new SKBitmap(wordCloud.Width, wordCloud.Height);
             canvas = new SKCanvas(Bitmap);
         }
@@ -36,9 +40,10 @@ namespace KnowledgePicker.WordCloud.Drawing
             textPaint = new SKPaint
             {
                 Color = defaultColor,
-                Typeface = font,
                 IsAntialias = antialias
             };
+            typeface = font;
+            this.font = font is null ? new SKFont() : new SKFont(font);
             this.wordCloud = wordCloud;
         }
 
@@ -48,9 +53,8 @@ namespace KnowledgePicker.WordCloud.Drawing
 
         public RectangleD Measure(string text, int count)
         {
-            textPaint.TextSize = (float)Sizer.GetFontSize(count);
-            SKRect rect = new SKRect();
-            textPaint.MeasureText(text, ref rect);
+            font.Size = (float)Sizer.GetFontSize(count);
+            font.MeasureText(text, out SKRect rect);
             var m = wordCloud.ItemMargin;
             return new RectangleD(rect.Left + m, rect.Top + m, rect.Width + 2 * m, rect.Height + 2 * m);
         }
@@ -59,7 +63,7 @@ namespace KnowledgePicker.WordCloud.Drawing
         {
             // For computation explanation, see
             // https://docs.microsoft.com/en-us/xamarin/xamarin-forms/user-interface/graphics/skiasharp/basics/text.
-            textPaint.TextSize = (float)Sizer.GetFontSize(count);
+            font.Size = (float)Sizer.GetFontSize(count);
             if (colorHex != null)
             {
                 textPaint.Color = SKColor.Parse(colorHex);
@@ -69,14 +73,14 @@ namespace KnowledgePicker.WordCloud.Drawing
                 textPaint.Color = defaultColor;
             }
             canvas.DrawText(text, (float)(location.X - measured.Left),
-                (float)(location.Y - measured.Top), textPaint);
+                (float)(location.Y - measured.Top), font, textPaint);
         }
 
         public IGraphicEngine<SKBitmap> Clone()
         {
             var clonedTextPaint = textPaint.Clone();
             clonedTextPaint.Color = defaultColor;
-            return new SkGraphicEngine(Sizer, wordCloud, clonedTextPaint);
+            return new SkGraphicEngine(Sizer, wordCloud, clonedTextPaint, typeface);
         }
 
         public SKBitmap ExtractBitmap()
@@ -87,6 +91,7 @@ namespace KnowledgePicker.WordCloud.Drawing
 
         public void Dispose()
         {
+            font.Dispose();
             textPaint.Dispose();
             canvas.Dispose();
             if (!bitmapExtracted)
