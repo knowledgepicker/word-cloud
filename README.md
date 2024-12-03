@@ -126,4 +126,4 @@ Tests are currently only supported on Linux, because they are snapshot tests (ge
 
 ### Release process
 
-After pushing a tag, GitHub workflow `release.yml` is triggered which builds and publishes the NuGet package.
+After pushing a tag (usually by creating and publishing a new release on GitHub), GitHub workflow `release.yml` is triggered which builds and publishes the NuGet package. If the action fails, check expiration of the NuGet API key and regenerate it if necessary.
