@@ -80,9 +80,9 @@
    @foreach (var (item, fontSize) in items)
    {
        const string format = "0.##"; // Use at most 2 decimal places.
-       var x = (item.Location.X - item.Measured.Left).ToString(format);
-       var y = (item.Location.Y - item.Measured.Top).ToString(format);
-       var fs = fontSize.ToString(format);
+       var x = (item.Location.X - item.Measured.Left).ToString(format, CultureInfo.InvariantCulture);
+       var y = (item.Location.Y - item.Measured.Top).ToString(format, CultureInfo.InvariantCulture);
+       var fs = fontSize.ToString(format, CultureInfo.InvariantCulture);
        var color = wcg.GetColorHexString(item);
        <text transform="translate(@x, @y)" font-size="@fs" fill="@color">@item.Entry.Word</text>
    }
