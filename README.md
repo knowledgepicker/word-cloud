@@ -84,7 +84,9 @@
        var y = (item.Location.Y - item.Measured.Top).ToString(format, CultureInfo.InvariantCulture);
        var fs = fontSize.ToString(format, CultureInfo.InvariantCulture);
        var color = wcg.GetColorHexString(item);
-       <text transform="translate(@x, @y)" font-size="@fs" fill="@color">@item.Entry.Word</text>
+       <text>
+           <text transform="translate(@x, @y)" font-size="@fs" fill="@color">@item.Entry.Word</text>
+       </text>
    }
    </svg>
    ```
