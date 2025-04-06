@@ -22,8 +22,6 @@ jobs:
         git config --global user.email github-actions@github.com
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 6.0.x
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
