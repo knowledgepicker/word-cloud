@@ -73,7 +73,7 @@ namespace KnowledgePicker.WordCloud.Drawing
                 textPaint.Color = defaultColor;
             }
             canvas.DrawText(text, (float)(location.X - measured.Left),
-                (float)(location.Y - measured.Top), font, textPaint);
+                (float)(location.Y - measured.Top), SKTextAlign.Left, font, textPaint);
         }
 
         public IGraphicEngine<SKBitmap> Clone()

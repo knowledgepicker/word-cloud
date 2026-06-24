@@ -174,7 +174,7 @@ public class IntegrationTests
         using var canvas = new SKCanvas(final);
         canvas.Clear(SKColors.White);
         using var bitmap = wcg.Draw();
-        canvas.DrawBitmap(bitmap, 0, 0);
+        canvas.DrawBitmap(bitmap, 0, 0, SKSamplingOptions.Default);
 
         // Save to PNG.
         using var data = final.Encode(SKEncodedImageFormat.Png, 100);
