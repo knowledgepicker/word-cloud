@@ -24,7 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\KnowledgePicker.WordCloud\KnowledgePicker.WordCloud.csproj" />
-    <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="4.151.1" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="4.151.2" />
   </ItemGroup>
 
 </Project>
